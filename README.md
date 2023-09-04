@@ -7,6 +7,8 @@
 
 [BOJ 1539 이진 검색 트리(Hard)](https://www.acmicpc.net/problem/1539)
 
+[BOJ 2533 사회망 서비스](https://www.acmicpc.net/problem/2533)
+
 [BOJ 10282 해킹](https://www.acmicpc.net/problem/10282)
 
 [SWEA 공통 조상](https://swexpertacademy.com/main/code/codeBattle/problemDetail.do?contestProbId=AV15PTkqAPYCFAYD&categoryId=AYnnOdjq4TwDFARi&categoryType=BATTLE&battleMainPageIndex=1)
