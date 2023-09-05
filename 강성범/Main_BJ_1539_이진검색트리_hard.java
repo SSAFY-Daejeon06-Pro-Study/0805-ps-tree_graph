@@ -1,4 +1,4 @@
-package kr.ac.lecture.baekjoon.Num1001_10000;
+package day0905;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,7 +20,6 @@ import java.util.TreeSet;
  *
  * BBST와 BST의 높이가 다르고, BBST로 BST의 높이를 구하는 방법을 모르겠음
  *
- *
  * 브로그를 보니 아래와 같은 방법을 treeset으로 해결했음
  * 1. 삽입하는 노드보다 크면서 가장 작은 노드를 찾음
  * 2. 삽입하는 노드보다 작으면서 가장 큰 노드를 찾음
@@ -32,6 +31,8 @@ import java.util.TreeSet;
  * 왜 최대일까?
  *
  * 몇 번 트리를 그려본 결과 더 높이가 높은 쪽에 붙을 수 밖에 없는 경우만 있었음...
+ * 
+ * 똑같이 삽입하려는 노드보다 작으면서 가장 큰, 노드보다 크면서 가장 작은 것의 최대 높이를 구해서 저장
  *
  *
  */
@@ -59,12 +60,9 @@ public class Main_BJ_1539_이진검색트리_hard {
         private final long[] nodeHeight = new long[250_002];
 
         private AvlNode root;
-        private long maxHeightAmongTravelNode;
         private long total = 0L;
 
         public void add(int value) {
-            maxHeightAmongTravelNode = 0;
-
             int largestLessThanValue = getLargestLessThanValue(value);
             int smallestGreaterThanValue = getSmallestGreaterThanValue(value);
 
@@ -88,10 +86,13 @@ public class Main_BJ_1539_이진검색트리_hard {
                 node = new AvlNode(value);
             }
 
+            // 삽입하려는 노드가 현재 노드보다 작을 때 -> 왼쪽으로 이동
             else if(node.data > value) {
-                maxHeightAmongTravelNode = Math.max(maxHeightAmongTravelNode, nodeHeight[node.data]);
+                
+                // 재귀
                 node.left = addValue(node.left, value);
 
+                // 왼쪽 서브트리의 높이가 오른쪽 서브트리의 높이보다 2클 때 -> 불균형
                 if(getHeight(node.left) - getHeight(node.right) == 2) {
                     if(value < node.left.data) { // LL
                         node = ll(node);
@@ -103,9 +104,9 @@ public class Main_BJ_1539_이진검색트리_hard {
             }
 
             else if(node.data < value) {
-                maxHeightAmongTravelNode = Math.max(maxHeightAmongTravelNode, nodeHeight[node.data]);
                 node.right = addValue(node.right, value);
 
+                // 왼 서브트리의 높이가 오른쪽 서브트리의 높이보다 2작을 때 -> 불균형
                 if(getHeight(node.left) - getHeight(node.right)  == -2) {
                     if(value > node.right.data) { // RR
                         node = rr(node);
@@ -116,6 +117,7 @@ public class Main_BJ_1539_이진검색트리_hard {
                 }
             }
 
+            // 높이 갱신
             node.height = getMaxHeight(node.left, node.right) + 1;
 
             return node;
@@ -166,7 +168,6 @@ public class Main_BJ_1539_이진검색트리_hard {
         }
 
         private int getHeight(AvlNode node) {
-            TreeSet<Integer> treeSet = new TreeSet<>();
             return node == null ? -1 : node.height;
         }
 
@@ -182,7 +183,7 @@ public class Main_BJ_1539_이진검색트리_hard {
                 }else if(tmp.data > value) { // 크니 작은 값을 찾기 위해 왼쪽으로 이동
                     tmp = tmp.left;
                 }else{
-                    break;
+                    break; // 노드가 중복되는 경우가 없으니 같아지는 경우는 발생하지 않음
                 }
             }
             return result;
@@ -200,7 +201,7 @@ public class Main_BJ_1539_이진검색트리_hard {
                 }else if(tmp.data < value) { // 작으니 큰 값을 찾기 위해 오른쪽으로 이동
                     tmp = tmp.right;
                 }else{
-                    break;
+                    break; // 노드가 중복되는 경우가 없으니 같아지는 경우는 발생하지 않음
                 }
             }
             return result;

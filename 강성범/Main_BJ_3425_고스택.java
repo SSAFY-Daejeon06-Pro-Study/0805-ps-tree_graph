@@ -1,4 +1,4 @@
-package kr.ac.lecture.baekjoon.Num1001_10000;
+package day0905;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -82,7 +82,7 @@ public class Main_BJ_3425_고스택 {
 
             Loop1:
             for(int i=0; i<n; i++) {
-                Stack<Integer> st = new Stack();
+                Stack<Integer> st = new Stack<>();
 
                 int value = Integer.parseInt(br.readLine());
                 st.add(value);
@@ -130,7 +130,7 @@ public class Main_BJ_3425_고스택 {
                         int tmp1 = st.pop();
                         int tmp2 = st.pop();
 
-                        if(isOver(tmp1+ tmp2)) {
+                        if(isOver(tmp1+ tmp2)) { // 두 숫장의 합이 범위를 벗어나는지 확인
                             System.out.println("ERROR");
                             continue Loop1;
                         }
@@ -145,7 +145,7 @@ public class Main_BJ_3425_고스택 {
                         int tmp1 = st.pop();
                         int tmp2 = st.pop();
 
-                        if(isOver(tmp2 - tmp1)) {
+                        if(isOver(tmp2 - tmp1)) { // 두 숫자의 차이가 범위를 벗어나는지 확인
                             System.out.println("ERROR");
                             continue Loop1;
                         }
@@ -194,7 +194,7 @@ public class Main_BJ_3425_고스택 {
                         int at2 = Math.abs(tmp2);
                         int a = at2 / at1;
 
-                        // 피연산자중 음수가 하나일 때
+                        // 피연산자중 음수가 하나일 때 -> 음수
                         if((tmp1 < 0 && tmp2 > 0) || (tmp1 > 0 && tmp2 < 0)) {
                             a *= -1;
                         }

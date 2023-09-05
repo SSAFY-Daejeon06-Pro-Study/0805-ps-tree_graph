@@ -1,4 +1,4 @@
-package kr.ac.lecture.baekjoon.Num1001_10000;
+package day0905;
 
 import java.io.*;
 import java.util.*;
@@ -41,7 +41,7 @@ import java.util.*;
 * dfs 탐색
 *
 * */
-public class Num2533 {
+public class Main_BJ_2533_사회망서비스_SNS {
 
     private static int n;
     private static List<Integer>[] graph;

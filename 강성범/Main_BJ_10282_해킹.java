@@ -1,4 +1,4 @@
-package kr.ac.lecture.baekjoon.Num10001_20000;
+package day0905;
 
 import java.io.*;
 import java.util.*;
@@ -68,7 +68,7 @@ public class Main_BJ_10282_해킹 {
 
             graph = new List[n];
             for(int i=0; i<n; i++){
-                graph[i] = new ArrayList<Node>();
+                graph[i] = new ArrayList<>();
             }
 
             // 의존성 개수(d)만큼 반복
